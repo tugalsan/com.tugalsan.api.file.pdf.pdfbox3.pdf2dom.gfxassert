@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert.geom;
 
 import java.awt.*;
@@ -26,6 +25,7 @@ import java.util.List;
 import static org.mabb.gfxassert.geom.ShapeSubset.AreaDescriptor.SearchType.*;
 
 public class ShapeSubset {
+
     protected List<AreaDescriptor> searchAreas = new ArrayList<AreaDescriptor>();
 
     public ShapeSubset(AreaDescriptor... shapes) {
@@ -90,8 +90,9 @@ public class ShapeSubset {
     public List<Rectangle2D> getToScale(Shape container) {
         List<Rectangle2D> scaledAreas = new ArrayList<Rectangle2D>(searchAreas.size());
 
-        for (AreaDescriptor area : searchAreas)
+        for (AreaDescriptor area : searchAreas) {
             scaledAreas.add(area.applyForContainer(container).getBounds2D());
+        }
 
         return scaledAreas;
     }
@@ -104,8 +105,9 @@ public class ShapeSubset {
         String formattedAreas = "";
 
         for (AreaDescriptor area : searchAreas) {
-            if (!formattedAreas.isEmpty())
+            if (!formattedAreas.isEmpty()) {
                 formattedAreas += " and ";
+            }
 
             formattedAreas += area.toString();
         }
@@ -117,8 +119,9 @@ public class ShapeSubset {
         Rectangle2D targetRect = target.getBounds2D();
 
         for (Rectangle2D searchShapeOn : getToScale(container)) {
-            if (!searchShapeOn.contains(targetRect))
+            if (!searchShapeOn.contains(targetRect)) {
                 return false;
+            }
         }
 
         return true;
@@ -128,8 +131,9 @@ public class ShapeSubset {
         Rectangle2D targetRect = target.getBounds2D();
 
         for (Rectangle2D searchShapeOn : getToScale(container)) {
-            if (!searchShapeOn.contains(targetRect) && !searchShapeOn.intersects(targetRect))
+            if (!searchShapeOn.contains(targetRect) && !searchShapeOn.intersects(targetRect)) {
                 return false;
+            }
         }
 
         return true;
@@ -156,9 +160,11 @@ public class ShapeSubset {
     }
 
     /**
-     * Seperate class in order to force .percent() or .pixels() syntax after a bottom(20)
+     * Seperate class in order to force .percent() or .pixels() syntax after a
+     * bottom(20)
      */
     public abstract static class AreaDescriptor {
+
         protected enum SearchType {
             TOP, BOTTOM, RIGHT, LEFT, CENTER, ALL
         }
@@ -187,15 +193,17 @@ public class ShapeSubset {
             String area = searchArea.toString();
             area = capitialize(area);
 
-            if (searchArea == ALL)
+            if (searchArea == ALL) {
                 return area;
+            }
 
             return area + " " + number + getUnit();
         }
 
         private static String capitialize(String str) {
-            if (str == null || str.isEmpty())
+            if (str == null || str.isEmpty()) {
                 return str;
+            }
 
             str = str.toLowerCase();
             char[] chars = str.toCharArray();
@@ -206,6 +214,7 @@ public class ShapeSubset {
     }
 
     public static class PercentArea extends AreaDescriptor {
+
         public PercentArea(double num, SearchType type) {
             super(num, type);
         }
@@ -258,6 +267,7 @@ public class ShapeSubset {
     }
 
     public static class PixelArea extends AreaDescriptor {
+
         public PixelArea(double num, SearchType type) {
             super(num, type);
         }

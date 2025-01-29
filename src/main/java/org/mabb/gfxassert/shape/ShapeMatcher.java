@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert.shape;
 
 import org.hamcrest.TypeSafeMatcher;
@@ -25,6 +24,7 @@ import java.awt.*;
 import static org.mabb.gfxassert.geom.ShapeSubset.all;
 
 public abstract class ShapeMatcher extends TypeSafeMatcher<Shape> {
+
     protected boolean exclude = false;
     protected final Shape target;
     protected ShapeSubset searchArea;

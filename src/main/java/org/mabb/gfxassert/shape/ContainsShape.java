@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert.shape;
 
 import org.hamcrest.Description;
@@ -24,6 +23,7 @@ import org.mabb.gfxassert.geom.ShapeSubset;
 import java.awt.*;
 
 public class ContainsShape extends ShapeMatcher {
+
     protected ContainsShape(Shape target, ShapeSubset searchBox) {
         super(target, searchBox);
     }

@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert.graphics;
 
 import org.hamcrest.Description;
@@ -28,6 +27,7 @@ import java.util.List;
 import static org.mabb.gfxassert.geom.ShapeSubset.all;
 
 public abstract class GraphicsMatcher extends MultiTypeSafeMatcher<BufferedImage> {
+
     protected ShapeSubset searchArea;
     protected GfxAssertImage graphics;
 
@@ -63,8 +63,9 @@ public abstract class GraphicsMatcher extends MultiTypeSafeMatcher<BufferedImage
 
     protected String formatColor(Color color) {
         String alpha = "";
-        if (color.getAlpha() != 255)
+        if (color.getAlpha() != 255) {
             alpha = ",a=" + color.getAlpha();
+        }
 
         return String.format("[r=%d,g=%d,b=%d%s]", color.getRed(), color.getGreen(), color.getBlue(), alpha);
 
@@ -75,8 +76,9 @@ public abstract class GraphicsMatcher extends MultiTypeSafeMatcher<BufferedImage
         boolean first = true;
 
         for (Color colorOn : colors) {
-            if (!first)
+            if (!first) {
                 formatedColors += ", ";
+            }
             formatedColors += formatColor(colorOn);
 
             first = false;

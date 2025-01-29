@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert.graphics;
 
 import org.mabb.gfxassert.geom.ShapeSubset;
@@ -28,6 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 class GfxAssertImage extends BufferedImage {
+
     public GfxAssertImage(BufferedImage target) {
         super(target.getColorModel(), target.copyData(null),
                 target.getColorModel().isAlphaPremultiplied(), null);
@@ -61,8 +61,9 @@ class GfxAssertImage extends BufferedImage {
     protected void searchPixels(ShapeSubset area, PixelSearchStrategy strat) {
         List<Rectangle2D> shapes = area.getToScale(getBounds());
 
-        for (Rectangle2D rectOn : shapes)
+        for (Rectangle2D rectOn : shapes) {
             searchPixelsInRect(rectOn, strat);
+        }
     }
 
     protected void searchPixelsInRect(Rectangle2D rect, PixelSearchStrategy strat) {
@@ -77,8 +78,9 @@ class GfxAssertImage extends BufferedImage {
                 Color colorOn = new Color(getRGB(x, y), true);
                 boolean shouldStop = strat.onPixel(colorOn, x, y);
 
-                if (shouldStop)
+                if (shouldStop) {
                     return;
+                }
             }
         }
     }
@@ -88,6 +90,7 @@ class GfxAssertImage extends BufferedImage {
     }
 
     interface PixelSearchStrategy {
+
         /**
          * @return true if the image pixel search should end.
          */
@@ -95,6 +98,7 @@ class GfxAssertImage extends BufferedImage {
     }
 
     class StopOnColorFound implements PixelSearchStrategy {
+
         public boolean found = false;
         private final Color stopOn;
 
@@ -109,24 +113,28 @@ class GfxAssertImage extends BufferedImage {
     }
 
     class FindAllColors implements PixelSearchStrategy {
+
         final List<Color> colors = new LinkedList<Color>();
 
         public boolean onPixel(Color color, int x, int y) {
-            if (!colors.contains(color))
+            if (!colors.contains(color)) {
                 colors.add(color);
+            }
 
             return false;
         }
     }
 
     class FindColorsUsage implements PixelSearchStrategy {
+
         final HashMap<Color, Integer> colors = new LinkedHashMap<Color, Integer>();
 
         public boolean onPixel(Color color, int x, int y) {
-            if (colors.containsKey(color))
+            if (colors.containsKey(color)) {
                 colors.put(color, colors.get(color) + 1);
-            else
+            } else {
                 colors.put(color, 1);
+            }
 
             return false;
         }

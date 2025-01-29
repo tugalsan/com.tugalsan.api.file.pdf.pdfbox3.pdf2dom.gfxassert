@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert;
 
 import org.mabb.gfxassert.graphics.*;
@@ -26,9 +25,11 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 /**
- * GfxAssert hamcrest static matcher methods. Use import static org.mabb.gfxassert.*
+ * GfxAssert hamcrest static matcher methods. Use import static
+ * org.mabb.gfxassert.*
  */
 public class GfxAssertMatchers {
+
     public static ShapeMatcher containsShape(Shape shape) {
         return ContainsShape.containsShape(shape);
     }

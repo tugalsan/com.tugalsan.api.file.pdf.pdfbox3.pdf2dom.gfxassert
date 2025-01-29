@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert;
 
 import org.hamcrest.BaseMatcher;
@@ -22,10 +21,12 @@ import org.hamcrest.Description;
 import org.hamcrest.internal.ReflectiveTypeFinder;
 
 /**
- * Based off hamcrest's TypeSafeMatcher but for multiple types, dunno if usefull actually
- * was thinking for graphics type things so could have same matcher for images and jpanels or something
+ * Based off hamcrest's TypeSafeMatcher but for multiple types, dunno if usefull
+ * actually was thinking for graphics type things so could have same matcher for
+ * images and jpanels or something
  */
 public abstract class MultiTypeSafeMatcher<T> extends BaseMatcher<T> {
+
     private static final ReflectiveTypeFinder TYPE_FINDER = new ReflectiveTypeFinder("matchesSafelyMultiType", 1, 0);
 
     final private Class<?> expectedMainType;
@@ -59,8 +60,9 @@ public abstract class MultiTypeSafeMatcher<T> extends BaseMatcher<T> {
 
     @SuppressWarnings({"unchecked"})
     public final boolean matches(Object item) {
-        if (isInstanceOfConvertableTypes(item))
+        if (isInstanceOfConvertableTypes(item)) {
             item = convertToMainType(item);
+        }
 
         return item != null
                 && expectedMainType.isInstance(item)
@@ -68,16 +70,19 @@ public abstract class MultiTypeSafeMatcher<T> extends BaseMatcher<T> {
     }
 
     protected T getConvertedType(Object item) {
-        if (convertedType != null)
+        if (convertedType != null) {
             convertedType = convertToMainType(item);
+        }
 
         return convertedType;
     }
 
     private boolean isInstanceOfConvertableTypes(Object item) {
-        for (Class typeOn : expectedTypes())
-            if (typeOn.isInstance(item))
+        for (Class typeOn : expectedTypes()) {
+            if (typeOn.isInstance(item)) {
                 return true;
+            }
+        }
 
         return false;
     }
@@ -101,4 +106,3 @@ public abstract class MultiTypeSafeMatcher<T> extends BaseMatcher<T> {
                 .appendText(")");
     }
 }
-

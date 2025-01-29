@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GfxAssert. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.mabb.gfxassert.graphics;
 
 import org.hamcrest.Description;
@@ -28,6 +27,7 @@ import java.util.List;
 import static org.mabb.gfxassert.graphics.GraphicsContainsColor.containsColor;
 
 public class GraphicsContainsColors extends GraphicsMatcher {
+
     private final Color[] findColors;
 
     GraphicsContainsColors(Color[] colors) {
@@ -40,8 +40,9 @@ public class GraphicsContainsColors extends GraphicsMatcher {
         List<Color> colors = graphics.findAllColors(searchArea);
 
         boolean hasOnlyColors = true;
-        for (Color colorOn : findColors)
+        for (Color colorOn : findColors) {
             hasOnlyColors = hasOnlyColors && colors.contains(colorOn);
+        }
 
         return exclude != hasOnlyColors;
     }
