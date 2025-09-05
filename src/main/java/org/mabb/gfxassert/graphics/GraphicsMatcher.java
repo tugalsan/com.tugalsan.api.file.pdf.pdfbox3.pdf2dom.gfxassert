@@ -19,7 +19,6 @@ package org.mabb.gfxassert.graphics;
 import org.hamcrest.Description;
 import org.mabb.gfxassert.MultiTypeSafeMatcher;
 import org.mabb.gfxassert.geom.ShapeSubset;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -47,16 +46,19 @@ public abstract class GraphicsMatcher extends MultiTypeSafeMatcher<BufferedImage
         return in(searchBox);
     }
 
+    @Override
     protected void describeItemMismatch(Object item, Description description) {
         List<Color> colors = graphics.findAllColors(searchArea);
 
         description.appendText("colors in image search area were, ").appendValue(formatColors(colors));
     }
 
+    @Override
     protected BufferedImage convertToMainType(Object item) {
         throw new RuntimeException("Could not convert type");
     }
 
+    @Override
     protected Class[] expectedTypes() {
         return new Class[0];
     }

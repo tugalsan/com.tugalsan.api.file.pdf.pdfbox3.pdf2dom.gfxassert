@@ -32,14 +32,17 @@ public class PartiallyContainsShape extends ShapeMatcher {
         super(target);
     }
 
+    @Override
     public boolean matchesSafely(Shape item) {
         return this.search(item);
     }
 
+    @Override
     public void describeMismatchSafely(Shape item, Description mismatchDescription) {
         mismatchDescription.appendText("was not inside ").appendText(searchArea.toString());
     }
 
+    @Override
     public void describeTo(Description description) {
         description.appendText("target shape inside ").appendText(searchArea.toString()).appendText(" of container shape, ").appendValue(target);
     }

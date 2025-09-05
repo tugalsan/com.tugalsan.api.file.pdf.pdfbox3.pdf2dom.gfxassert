@@ -106,6 +106,7 @@ class GfxAssertImage extends BufferedImage {
             this.stopOn = color;
         }
 
+        @Override
         public boolean onPixel(Color color, int x, int y) {
             found = stopOn.equals(color);
             return found;
@@ -116,6 +117,7 @@ class GfxAssertImage extends BufferedImage {
 
         final List<Color> colors = new LinkedList<Color>();
 
+        @Override
         public boolean onPixel(Color color, int x, int y) {
             if (!colors.contains(color)) {
                 colors.add(color);
@@ -129,6 +131,7 @@ class GfxAssertImage extends BufferedImage {
 
         final HashMap<Color, Integer> colors = new LinkedHashMap<Color, Integer>();
 
+        @Override
         public boolean onPixel(Color color, int x, int y) {
             if (colors.containsKey(color)) {
                 colors.put(color, colors.get(color) + 1);

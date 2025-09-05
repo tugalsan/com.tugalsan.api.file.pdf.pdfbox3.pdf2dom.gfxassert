@@ -18,7 +18,6 @@ package org.mabb.gfxassert.graphics;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -32,6 +31,7 @@ public class GraphicsOnlyContainsColor extends GraphicsMatcher {
         this.findColor = color;
     }
 
+    @Override
     public boolean matchesSafely(BufferedImage item) {
         return this.search(item);
     }
@@ -44,10 +44,12 @@ public class GraphicsOnlyContainsColor extends GraphicsMatcher {
         return exclude != hasOnlyColor;
     }
 
+    @Override
     public void describeMismatchSafely(BufferedImage item, Description mismatchDescription) {
         mismatchDescription.appendText("was not inside ").appendText(searchArea.toString());
     }
 
+    @Override
     public void describeTo(Description description) {
         description.appendText("only color ").appendValue(formatColor(findColor)).
                 appendText(" inside ").appendValue(searchArea.toString()).

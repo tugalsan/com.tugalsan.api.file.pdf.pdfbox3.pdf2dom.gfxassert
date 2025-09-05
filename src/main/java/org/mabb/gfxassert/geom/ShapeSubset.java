@@ -21,6 +21,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 import static org.mabb.gfxassert.geom.ShapeSubset.AreaDescriptor.SearchType.*;
 
@@ -101,41 +102,32 @@ public class ShapeSubset {
         searchAreas.add(shape);
     }
 
+    @Override
     public String toString() {
-        String formattedAreas = "";
-
-        for (AreaDescriptor area : searchAreas) {
-            if (!formattedAreas.isEmpty()) {
-                formattedAreas += " and ";
-            }
-
-            formattedAreas += area.toString();
+        var formattedAreas = new StringJoiner(" and ");
+        for (var area : searchAreas) {
+            formattedAreas.add(area.toString());
         }
-
-        return formattedAreas;
+        return formattedAreas.toString();
     }
 
     public boolean contains(Shape target, Shape container) {
-        Rectangle2D targetRect = target.getBounds2D();
-
-        for (Rectangle2D searchShapeOn : getToScale(container)) {
+        var targetRect = target.getBounds2D();
+        for (var searchShapeOn : getToScale(container)) {
             if (!searchShapeOn.contains(targetRect)) {
                 return false;
             }
         }
-
         return true;
     }
 
     public boolean partiallyContains(Shape target, Shape container) {
-        Rectangle2D targetRect = target.getBounds2D();
-
-        for (Rectangle2D searchShapeOn : getToScale(container)) {
+        var targetRect = target.getBounds2D();
+        for (var searchShapeOn : getToScale(container)) {
             if (!searchShapeOn.contains(targetRect) && !searchShapeOn.intersects(targetRect)) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -189,14 +181,13 @@ public class ShapeSubset {
 
         protected abstract String getUnit();
 
+        @Override
         public String toString() {
-            String area = searchArea.toString();
+            var area = searchArea.toString();
             area = capitialize(area);
-
             if (searchArea == ALL) {
                 return area;
             }
-
             return area + " " + number + getUnit();
         }
 
@@ -204,11 +195,9 @@ public class ShapeSubset {
             if (str == null || str.isEmpty()) {
                 return str;
             }
-
             str = str.toLowerCase();
-            char[] chars = str.toCharArray();
+            var chars = str.toCharArray();
             chars[0] = new String(new char[]{chars[0]}).toUpperCase().toCharArray()[0];
-
             return new String(chars);
         }
     }
@@ -219,9 +208,9 @@ public class ShapeSubset {
             super(num, type);
         }
 
+        @Override
         public Shape applyForContainer(Shape container) {
             Rectangle2D.Double rect;
-
             double pct = number / 100.0;
             switch (searchArea) {
                 case TOP:
@@ -249,10 +238,9 @@ public class ShapeSubset {
         }
 
         private Shape scaleTo(Shape search, Shape scaleToArea) {
-            Rectangle2D scaleTo = scaleToArea.getBounds2D();
-            Rectangle2D searchBounds = search.getBounds2D();
-
-            Rectangle2D.Double scaledAreaOn = new Rectangle2D.Double();
+            var scaleTo = scaleToArea.getBounds2D();
+            var searchBounds = search.getBounds2D();
+            var scaledAreaOn = new Rectangle2D.Double();
             scaledAreaOn.height = searchBounds.getHeight() * scaleTo.getHeight();
             scaledAreaOn.width = searchBounds.getWidth() * scaleTo.getWidth();
             scaledAreaOn.x = searchBounds.getX() * scaleTo.getWidth() + scaleTo.getX();
@@ -261,6 +249,7 @@ public class ShapeSubset {
             return scaledAreaOn;
         }
 
+        @Override
         public String getUnit() {
             return "%";
         }
@@ -272,9 +261,10 @@ public class ShapeSubset {
             super(num, type);
         }
 
+        @Override
         public Shape applyForContainer(Shape container) {
             Rectangle2D rect;
-            Rectangle2D scaleTo = container.getBounds2D();
+            var scaleTo = container.getBounds2D();
 
             double pixels = number;
             switch (searchArea) {
@@ -305,6 +295,7 @@ public class ShapeSubset {
             return rect;
         }
 
+        @Override
         public String getUnit() {
             return "px";
         }

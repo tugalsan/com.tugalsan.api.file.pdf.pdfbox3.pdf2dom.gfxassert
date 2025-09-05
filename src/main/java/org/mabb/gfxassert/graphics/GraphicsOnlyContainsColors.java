@@ -32,6 +32,7 @@ public class GraphicsOnlyContainsColors extends GraphicsMatcher {
         this.findColors = color;
     }
 
+    @Override
     public boolean matchesSafely(BufferedImage item) {
         return this.search(item);
     }
@@ -48,13 +49,14 @@ public class GraphicsOnlyContainsColors extends GraphicsMatcher {
         return exclude != hasOnlyColor;
     }
 
+    @Override
     public void describeMismatchSafely(BufferedImage item, Description description) {
         description.appendText("was not inside ").appendText(searchArea.toString());
     }
 
+    @Override
     public void describeTo(Description description) {
         List<Color> colors = graphics.findAllColors(searchArea);
-
         description.appendText("only colors ").appendValue(formatColors(colors)).
                 appendText(" inside ").appendValue(searchArea.toString()).
                 appendText(" of target image.");
