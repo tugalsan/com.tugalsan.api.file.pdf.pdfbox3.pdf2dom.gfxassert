@@ -16,8 +16,7 @@
  */
 package org.mabb.gfxassert.geom;
 
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
+import module java.desktop;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

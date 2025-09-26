@@ -19,7 +19,7 @@ package org.mabb.gfxassert.shape;
 import org.hamcrest.TypeSafeMatcher;
 import org.mabb.gfxassert.geom.ShapeSubset;
 
-import java.awt.*;
+import module java.desktop;
 
 import static org.mabb.gfxassert.geom.ShapeSubset.all;
 

@@ -18,9 +18,7 @@ package org.mabb.gfxassert.graphics;
 
 import org.mabb.gfxassert.geom.ShapeSubset;
 
-import java.awt.Color;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
+import module java.desktop;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;

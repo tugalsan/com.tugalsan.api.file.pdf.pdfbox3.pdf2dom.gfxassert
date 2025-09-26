@@ -19,8 +19,7 @@ package org.mabb.gfxassert.graphics;
 import org.hamcrest.Description;
 import org.mabb.gfxassert.MultiTypeSafeMatcher;
 import org.mabb.gfxassert.geom.ShapeSubset;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
+import module java.desktop;
 import java.util.List;
 
 import static org.mabb.gfxassert.geom.ShapeSubset.all;

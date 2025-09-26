@@ -19,8 +19,7 @@ package org.mabb.gfxassert.graphics;
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
+import module java.desktop;
 
 public class GraphicsContainsColor extends GraphicsMatcher {
 

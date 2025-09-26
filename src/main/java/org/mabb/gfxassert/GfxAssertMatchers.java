@@ -17,12 +17,9 @@
 package org.mabb.gfxassert;
 
 import org.mabb.gfxassert.graphics.*;
-import org.mabb.gfxassert.shape.ContainsShape;
-import org.mabb.gfxassert.shape.PartiallyContainsShape;
-import org.mabb.gfxassert.shape.ShapeMatcher;
+import org.mabb.gfxassert.shape.*;
 
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
+import module java.desktop;
 
 /**
  * GfxAssert hamcrest static matcher methods. Use import static

@@ -17,8 +17,7 @@
 package org.mabb.gfxassert.graphics;
 
 import org.hamcrest.Description;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import module java.desktop;
 import java.util.List;
 
 

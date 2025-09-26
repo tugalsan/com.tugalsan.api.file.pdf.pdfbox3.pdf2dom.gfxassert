@@ -20,7 +20,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Factory;
 import org.mabb.gfxassert.geom.ShapeSubset;
 
-import java.awt.*;
+import module java.desktop;
 
 public class PartiallyContainsShape extends ShapeMatcher {
 

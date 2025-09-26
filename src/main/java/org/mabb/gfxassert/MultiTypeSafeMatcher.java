@@ -16,9 +16,8 @@
  */
 package org.mabb.gfxassert;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.internal.ReflectiveTypeFinder;
+import org.hamcrest.*;
+import org.hamcrest.internal.*;
 
 /**
  * Based off hamcrest's TypeSafeMatcher but for multiple types, dunno if usefull
